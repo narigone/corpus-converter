@@ -5,11 +5,19 @@ package br.com.narigone.converter.formatters
   */
 object FormatterFactory {
 
-  def buildOutputFormatter() : OutputFormatterTrait = {
-    new OutputFormatter
+  def buildOutputFormatter(fileName: String) : OutputFormatterTrait = {
+    new OutputFormatter(fileName)
   }
 
-  def buildDictionaryFormatter() : DictionaryFormatterTrait = {
-    new DictionaryFormatter
+  def buildCityDictionaryFormatter(fileName: String) : DictionaryFormatterTrait = {
+    new CityDictionaryFormatter(fileName)
+  }
+
+  def buildProfessionDictionaryFormatter(fileName: String) : DictionaryFormatterTrait = {
+    new ProfessionDictionaryFormatter(fileName)
+  }
+
+  def buildUserDictionaryFormatter(fileName: String) : DictionaryFormatterTrait = {
+    new UserDictionaryFormatter(fileName)
   }
 }

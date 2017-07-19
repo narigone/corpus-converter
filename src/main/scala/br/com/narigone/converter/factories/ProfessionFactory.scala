@@ -15,7 +15,23 @@ object ProfessionFactory {
       return professionMap(mapKey)
     }
 
+    if(mapKey.isEmpty){
+      return buildUndefinedProfession()
+    }
+
     buildNewProfessionFromName(professionName, mapKey)
+  }
+
+  def buildUndefinedProfession(): Profession = {
+    val code = "Prof_UNDEF"
+
+    if(this.professionMap.contains(code)){
+      return professionMap(code)
+    }
+
+    val profession = new Profession("Não informada", code)
+    professionMap += (code -> profession)
+    profession
   }
 
   private def buildNewProfessionFromName(professionName: String, mapKey: String) = {
@@ -26,7 +42,7 @@ object ProfessionFactory {
     Profession
   }
 
-  def getProfessionList() : List[Profession] = {
+  def getProfessionList : List[Profession] = {
     var professionList : List[Profession] = List()
 
     professionMap.foreach{

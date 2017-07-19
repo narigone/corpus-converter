@@ -6,5 +6,5 @@ import br.com.narigone.converter.models.Complaint
   * Created by raphael on 6/7/17.
   */
 trait OutputFormatterTrait {
-  def buildFormattedString(recordList: List[Complaint]) : String
+  def printToFile(complaintList: Array[Complaint])
 }

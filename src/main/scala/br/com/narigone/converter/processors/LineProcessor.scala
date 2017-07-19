@@ -10,11 +10,12 @@ object LineProcessor {
 
   def processLine(line: String): Complaint = {
     val record = ComplaintFactory.getRecordFromLine(line)
+
     if (record == null) {
       return null
     }
 
-    return record
+    record
   }
 
 }
