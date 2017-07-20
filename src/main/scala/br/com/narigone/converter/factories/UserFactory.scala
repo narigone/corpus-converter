@@ -6,7 +6,6 @@ import br.com.narigone.converter.models.User
   * Created by raphael on 6/7/17.
   */
 object UserFactory {
-
   private var userMap = Map[String, User]()
 
   def buildUserFromDescription(userDescription: String) : User = {
@@ -28,9 +27,22 @@ object UserFactory {
     for ( i <- 0 until tokenList.length) {
       val token = tokenList(i)
       if( i == 0 ){
-        userName = token
+        userName = token.trim
       } else if( token.contains( "/" ) ){
         cityDescription = token
+        val tokens = cityDescription.split("/")
+        try {
+          val state = tokens(tokens.length - 1)
+          if (tokens.length > 1 && state.contains(" ")) {
+            professionName = state.substring(state.indexOf(" ")).trim
+            if(!professionName.isEmpty) {
+              cityDescription = cityDescription.replace(professionName, "").trim
+            }
+          }
+        }catch {
+          case e: Exception =>
+            println("Weird city description " + cityDescription + " error: " + e.getMessage)
+        }
       } else {
         professionName = token
       }

@@ -6,7 +6,7 @@ import br.com.narigone.converter.models.Complaint
   * Created by raphael on 6/7/17.
   */
 object ComplaintFactory {
-  private val regexString = "(De|DE): (.+) \\* (.+)\\\"?";
+  private val regexString = "(De|DE): (.+) \\* (.+)\\\"?"
   private val pattern = regexString.r
 
   def getRecordFromLine(line: String) : Complaint = {
@@ -18,12 +18,13 @@ object ComplaintFactory {
 
       val user = UserFactory.buildUserFromDescription(userDescription)
 
-      new Complaint(user, complaintText)
+      val complaint = new Complaint(user, complaintText)
+
+      complaint
     } catch {
-      case e: Exception => {
-        println("Record " + line + " failed to match regex " + this.regexString + " error: " + e.getMessage())
-        return null
-      }
+      case e: Exception =>
+        println("Record " + line + " failed to match regex " + this.regexString + " error: " + e.getMessage)
+        null
     }
   }
 }

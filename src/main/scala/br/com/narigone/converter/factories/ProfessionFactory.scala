@@ -19,7 +19,7 @@ object ProfessionFactory {
       return buildUndefinedProfession()
     }
 
-    buildNewProfessionFromName(professionName, mapKey)
+    buildNewProfessionFromName(professionName.trim, mapKey)
   }
 
   def buildUndefinedProfession(): Profession = {

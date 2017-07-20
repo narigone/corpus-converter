@@ -21,10 +21,14 @@ object CityFactory {
       return buildUndefinedCity()
     }
 
-    val cityName = tokens(0)
-    val stateName = tokens(1)
+    var cityName = tokens(tokens.length - 2)
+    val stateName = tokens(tokens.length - 1)
 
-    buildNewCityFromName(cityName, stateName, mapKey)
+    if(cityName.equals(stateName)){
+      cityName = tokens(0)
+    }
+
+    buildNewCityFromName(cityName.trim, stateName.trim, mapKey)
   }
 
   private def buildNewCityFromName(cityName: String, stateName: String, mapKey: String) : City  = {
